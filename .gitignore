@@ -1,0 +1,16 @@
+# Rust
+target/
+*.pbd
+**/*.rs.bk
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+/target
+
+# macOS
+**/.DS_Store
