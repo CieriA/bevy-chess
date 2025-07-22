@@ -61,10 +61,10 @@ pub fn drag_end(
         {
             let window = window.single().unwrap();
             let cell_size = window.width() / board::SIZE as f32;
-            
+
             // TODO add logic here to check if the move is valid
             let valid_mov = true; // this will be the result of the function
-            
+
             if valid_mov
                 && let Some(cursor) = cursor_pos(window)
                 && let Some(pos) = get_position(&cursor, window)

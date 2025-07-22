@@ -1,5 +1,7 @@
+pub mod points;
 #[cfg(test)]
 mod tests;
+pub use points::{Coord, Offset};
 
 use crate::piece::{Kind, Piece, PieceColor};
 use bevy::prelude::{Component, Resource};
@@ -8,33 +10,6 @@ use std::ops::Add;
 
 pub const SIZE: usize = 8;
 pub const CELL_SIZE: f32 = 120.;
-
-#[derive(Component, Debug, Default, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct Coord {
-    pub x: usize,
-    pub y: usize,
-}
-
-impl Add for Coord {
-    type Output = Option<Self>;
-    fn add(self, rhs: Self) -> Self::Output {
-        Self::new(self.x + rhs.x, self.y + rhs.y)
-    }
-}
-
-impl Coord {
-    #[inline]
-    pub fn new(x: usize, y: usize) -> Option<Self> {
-        (x < SIZE && y < SIZE).then_some(Self { x, y })
-    }
-}
-impl TryFrom<(usize, usize)> for Coord {
-    type Error = ();
-    #[inline]
-    fn try_from((x, y): (usize, usize)) -> Result<Self, Self::Error> {
-        Self::new(x, y).ok_or(())
-    }
-}
 
 #[derive(Resource, Debug, Clone)]
 pub struct BoardState(pub HashMap<Coord, Piece>);
